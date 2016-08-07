@@ -2,7 +2,7 @@ import {inject, NewInstance} from 'aurelia-framework';
 import {length, required, date, datetime, email, equality, exclusion, inclusion, format, url, numericality} from 'aurelia-validatejs';
 import {ValidationController} from 'aurelia-validation';
 
-@inject(NewInstance.of(ValidationController))
+@inject(NewInstance.of(ValidationController)) // each model get it's own instance of the validation controller
 export class Decorators {
   model;
 
@@ -12,7 +12,7 @@ export class Decorators {
   }
 
   submit() {
-    var errors = this.controller.validate();
+    var errors = this.controller.validate(); //ask the controller if everything is ok.
     if (errors.length === 0) {
       alert('Submitted successfully');
     } else {
@@ -24,8 +24,6 @@ export class Decorators {
 class Model {
   @length({ minimum: 5, maximum: 25 }) firstName = 'Luke';
   @required lastName = 'Skywalker';
-  // @date lastUpdated = new Date();
-  // @datetime lastTimeUpdated = new Date();
   @email email = 'luke@skywalker.net';
   @length({ minimum: 5, maximum: 25 }) password = 'equal';
   @equality('password') confirmPassword = 'equal';
