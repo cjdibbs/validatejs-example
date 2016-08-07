@@ -1,0 +1,26 @@
+<template>
+    <form class="container" validation-renderer="bootstrap-form">
+
+        <div class="form-group">
+            <label for="email-address">Email address</label>
+            <input type="email" class="form-control" id="email-address" placeholder="Email"  value.bind="email & validate" />
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name"  value.bind="name & validate" />
+        </div>
+
+        <div class="form-group">
+            <div class="form-inline"  repeat.for="child of children">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Title" value.bind="child.title & validate" />
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Rating" value.bind="child.raiting & validate" />
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-default" click.trigger="addMovie()">Add Movie</button>
+        <button class="btn btn-default" click.trigger="validate()">Validate</button>
+    </form>
+</template>
